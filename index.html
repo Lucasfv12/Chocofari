@@ -6,7 +6,7 @@
 <title>Chocofari</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Chewy&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@600;700;800;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
     --rojo:#CC3335;
@@ -15,7 +15,7 @@
     --naranja:#F79226;
     --crema:#F9F8D7;
     --texto:#3a2e2a;
-    --display:'Chewy', cursive;
+    --display:'League Spartan', sans-serif;
     --cuerpo:'Nunito', sans-serif;
   }
   *{margin:0;padding:0;box-sizing:border-box}
@@ -36,7 +36,7 @@
   .hero{position:relative;min-height:100vh;overflow:hidden;display:flex;align-items:center}
   .hero-bg{position:absolute;inset:0;background:url('assets/hero.png') center/cover no-repeat}
   .hero-content{position:relative;z-index:5;max-width:1100px;margin:0 auto;padding:0 50px;width:100%}
-  .hero h1{font-family:var(--display);color:#fff;font-size:clamp(2.4rem,6vw,4.8rem);line-height:1;text-shadow:3px 4px 0 rgba(0,0,0,.3);max-width:9ch}
+  .hero h1{font-family:var(--display);font-weight:800;letter-spacing:.5px;color:#fff;font-size:clamp(2.4rem,6vw,4.8rem);line-height:1;text-shadow:3px 4px 0 rgba(0,0,0,.3);max-width:9ch}
   .btn{display:inline-block;margin-top:26px;background:var(--naranja);color:#fff;text-decoration:none;font-weight:800;padding:14px 40px;border-radius:30px;font-size:1rem;box-shadow:0 6px 0 rgba(0,0,0,.2);transition:transform .15s}
   .btn:hover{transform:translateY(-3px)}
 
@@ -51,7 +51,7 @@
 
   .mision{background:var(--crema-gris);padding:100px 40px}
   .mision-inner{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1.4fr;gap:60px;align-items:center}
-  .mision h2{font-family:var(--display);color:var(--rojo);font-size:clamp(2.2rem,4vw,3.2rem);line-height:.95}
+  .mision h2{font-family:var(--display);font-weight:800;color:var(--rojo);font-size:clamp(2.2rem,4vw,3.2rem);line-height:.95}
   .mision p{color:var(--rojo);font-weight:600;font-size:1.1rem;line-height:1.7}
 
   .productos{background:var(--turquesa);padding:60px 40px}
@@ -60,14 +60,14 @@
   .slides{display:flex;transition:transform .5s ease}
   .slide{min-width:100%;display:flex;justify-content:center}
   .slide img{width:100%;max-width:420px;object-fit:contain;border-radius:8px}
-  .arrow{background:none;border:none;color:var(--rojo);font-size:3.4rem;cursor:pointer;padding:0 6px;line-height:1;user-select:none;transition:transform .15s;font-family:var(--display)}
+  .arrow{background:none;border:none;color:var(--rojo);font-size:3.4rem;cursor:pointer;padding:0 6px;line-height:1;user-select:none;transition:transform .15s}
   .arrow:hover{transform:scale(1.2)}
   .dots{display:flex;gap:10px;justify-content:center;margin-top:24px}
   .dot{width:11px;height:11px;border-radius:50%;background:rgba(255,255,255,.45);cursor:pointer;transition:.3s}
   .dot.active{background:#fff}
 
   .sucursales{background:var(--naranja);padding:70px 40px;text-align:center}
-  .sucursales h2{font-family:var(--display);color:var(--rojo);font-size:clamp(1.8rem,4vw,2.8rem);margin-bottom:44px}
+  .sucursales h2{font-family:var(--display);font-weight:800;letter-spacing:.5px;color:var(--rojo);font-size:clamp(1.8rem,4vw,2.8rem);margin-bottom:44px}
   .suc-grid{max-width:720px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:30px 50px;text-align:left}
   .suc{display:flex;gap:12px}
   .pin{width:24px;height:24px;flex-shrink:0;margin-top:3px;fill:var(--rojo)}
@@ -76,7 +76,7 @@
 
   .fundaciones{background:var(--crema-gris);padding:80px 40px}
   .fund-inner{max-width:1000px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap}
-  .fundaciones h2{font-family:var(--display);color:var(--turquesa);font-size:clamp(1.8rem,4vw,2.8rem);line-height:.95}
+  .fundaciones h2{font-family:var(--display);font-weight:800;color:var(--turquesa);font-size:clamp(1.8rem,4vw,2.8rem);line-height:.95}
   .logos{display:flex;gap:46px;align-items:center;flex-wrap:wrap}
   .logos img{height:70px;width:auto;object-fit:contain}
   .logos img.unicef{height:42px}
