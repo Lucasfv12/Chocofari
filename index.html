@@ -6,7 +6,7 @@
 <title>Chocofari</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@600;700;800;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;600;700&family=League+Spartan:wght@600;700;800;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
     --rojo:#CC3335;
@@ -24,7 +24,7 @@
 
   header{position:fixed;top:0;left:0;right:0;z-index:100;padding:30px 20px 14px}
   .nav{position:relative;max-width:1100px;margin:0 auto;background:var(--rojo);border-radius:40px;display:flex;align-items:center;justify-content:space-evenly;gap:10px;height:62px;padding:0 24px;box-shadow:0 6px 20px rgba(0,0,0,.18)}
-  .nav a{color:#fff;text-decoration:none;font-weight:700;font-size:.85rem;letter-spacing:.5px;transition:opacity .2s}
+  .nav a{font-family:'Cabin',sans-serif;color:#fff;text-decoration:none;font-weight:700;font-size:.9rem;letter-spacing:.5px;transition:opacity .2s}
   .nav a:hover{opacity:.7}
   .nav-left,.nav-right{display:flex;gap:0;align-items:center;flex:1;justify-content:space-evenly}
   .nav-right{margin-left:150px}
@@ -38,7 +38,7 @@
   .hero-bg{position:absolute;inset:0;background:url('assets/hero.png') center/cover no-repeat}
   .hero-content{position:relative;z-index:5;max-width:1100px;margin:0 auto;padding:0 50px;width:100%}
   .hero h1{font-family:var(--display);font-weight:800;letter-spacing:.5px;color:#fff;font-size:clamp(1.9rem,4vw,3.3rem);line-height:1.05;text-shadow:3px 4px 0 rgba(0,0,0,.3);max-width:11ch}
-  .btn{display:inline-block;margin-top:26px;background:var(--naranja);color:#fff;text-decoration:none;font-weight:800;padding:14px 40px;border-radius:30px;font-size:1rem;box-shadow:0 6px 0 rgba(0,0,0,.2);transition:transform .15s}
+  .btn{display:inline-block;margin-top:26px;background:var(--rojo);color:#fff;text-decoration:none;font-family:'League Spartan',sans-serif;font-weight:700;letter-spacing:.5px;padding:14px 40px;border-radius:30px;font-size:1.05rem;box-shadow:0 6px 0 rgba(0,0,0,.2);transition:transform .15s}
   .btn:hover{transform:translateY(-3px)}
 
   .dino{position:absolute;z-index:4;bottom:8%}
@@ -53,7 +53,7 @@
   .mision{background:var(--crema-gris);padding:100px 40px}
   .mision-inner{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1.4fr;gap:60px;align-items:center}
   .mision h2{font-family:var(--display);font-weight:800;color:var(--rojo);font-size:clamp(2.2rem,4vw,3.2rem);line-height:.95}
-  .mision p{color:var(--rojo);font-weight:600;font-size:1.1rem;line-height:1.7}
+  .mision p{font-family:'Cabin',sans-serif;color:var(--rojo);font-weight:600;font-size:1.1rem;line-height:1.35}
 
   .productos{position:relative;overflow:hidden;line-height:0}
   .carrusel{position:relative;width:100%}
@@ -153,7 +153,7 @@
 
 <section class="mision" id="mision">
   <div class="mision-inner">
-    <h2 class="reveal">nuestra misión.</h2>
+    <h2 class="reveal">nuestra<br>misión.</h2>
     <p class="reveal">La naturaleza no tiene límites, aprender de ella tampoco. Expandimos nuevos horizontes a través del sabor del chocolate para que los más pequeños abracen el mundo y sean los protagonistas de su siguiente aventura.</p>
   </div>
 </section>
