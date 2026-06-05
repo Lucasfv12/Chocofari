@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chocofari</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chewy&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --rojo:#CC3335;
+    --crema-gris:#EAE9E3;
+    --turquesa:#339F9F;
+    --naranja:#F79226;
+    --crema:#F9F8D7;
+    --texto:#3a2e2a;
+    --display:'Chewy', cursive;
+    --cuerpo:'Nunito', sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--cuerpo);color:var(--texto);background:var(--crema-gris);overflow-x:hidden}
+
+  header{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 20px}
+  .nav{max-width:1100px;margin:0 auto;background:var(--rojo);border-radius:40px;display:flex;align-items:center;justify-content:space-between;padding:8px 30px;box-shadow:0 6px 20px rgba(0,0,0,.18)}
+  .nav a{color:#fff;text-decoration:none;font-weight:700;font-size:.85rem;letter-spacing:.5px;transition:opacity .2s}
+  .nav a:hover{opacity:.7}
+  .nav-left,.nav-right{display:flex;gap:26px;flex:1;align-items:center}
+  .nav-right{justify-content:flex-end}
+  .nav-logo{height:48px;flex-shrink:0;padding:0 14px}
+  .nav-logo img{height:100%}
+  .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none}
+  .hamburger span{width:26px;height:3px;background:#fff;border-radius:3px;transition:.3s}
+
+  .hero{position:relative;min-height:100vh;overflow:hidden;display:flex;align-items:center}
+  .hero-bg{position:absolute;inset:0;background:url('assets/hero.png') center/cover no-repeat}
+  .hero-content{position:relative;z-index:5;max-width:1100px;margin:0 auto;padding:0 50px;width:100%}
+  .hero h1{font-family:var(--display);color:#fff;font-size:clamp(2.4rem,6vw,4.8rem);line-height:1;text-shadow:3px 4px 0 rgba(0,0,0,.3);max-width:9ch}
+  .btn{display:inline-block;margin-top:26px;background:var(--naranja);color:#fff;text-decoration:none;font-weight:800;padding:14px 40px;border-radius:30px;font-size:1rem;box-shadow:0 6px 0 rgba(0,0,0,.2);transition:transform .15s}
+  .btn:hover{transform:translateY(-3px)}
+
+  .dino{position:absolute;z-index:4;bottom:8%}
+  .dino-verde{left:41%;bottom:11%;width:clamp(150px,16vw,280px);animation:floatA 4s ease-in-out infinite}
+  .dino-celeste{right:9%;width:clamp(130px,13vw,230px);animation:floatB 4.6s ease-in-out infinite}
+  @keyframes floatA{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-14px) rotate(-1.5deg)}}
+  @keyframes floatB{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-10px) rotate(1.5deg)}}
+
+  .scroll-down{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:7;width:46px;height:46px;border-radius:50%;background:var(--rojo);display:flex;align-items:center;justify-content:center;cursor:pointer;animation:bob 1.8s ease-in-out infinite;box-shadow:0 4px 12px rgba(0,0,0,.25);text-decoration:none;color:#fff;font-size:1.4rem}
+  @keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+
+  .mision{background:var(--crema-gris);padding:100px 40px}
+  .mision-inner{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1.4fr;gap:60px;align-items:center}
+  .mision h2{font-family:var(--display);color:var(--rojo);font-size:clamp(2.2rem,4vw,3.2rem);line-height:.95}
+  .mision p{color:var(--rojo);font-weight:600;font-size:1.1rem;line-height:1.7}
+
+  .productos{background:var(--turquesa);padding:60px 40px}
+  .carrusel{max-width:900px;margin:0 auto;position:relative;display:flex;align-items:center;justify-content:center;gap:10px}
+  .slide-wrap{overflow:hidden;width:420px;max-width:78%}
+  .slides{display:flex;transition:transform .5s ease}
+  .slide{min-width:100%;display:flex;justify-content:center}
+  .slide img{width:100%;max-width:420px;object-fit:contain;border-radius:8px}
+  .arrow{background:none;border:none;color:var(--rojo);font-size:3.4rem;cursor:pointer;padding:0 6px;line-height:1;user-select:none;transition:transform .15s;font-family:var(--display)}
+  .arrow:hover{transform:scale(1.2)}
+  .dots{display:flex;gap:10px;justify-content:center;margin-top:24px}
+  .dot{width:11px;height:11px;border-radius:50%;background:rgba(255,255,255,.45);cursor:pointer;transition:.3s}
+  .dot.active{background:#fff}
+
+  .sucursales{background:var(--naranja);padding:70px 40px;text-align:center}
+  .sucursales h2{font-family:var(--display);color:var(--rojo);font-size:clamp(1.8rem,4vw,2.8rem);margin-bottom:44px}
+  .suc-grid{max-width:720px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:30px 50px;text-align:left}
+  .suc{display:flex;gap:12px}
+  .pin{width:24px;height:24px;flex-shrink:0;margin-top:3px;fill:var(--rojo)}
+  .suc strong{display:block;color:#fff;font-size:1.2rem;letter-spacing:.5px}
+  .suc span{color:var(--rojo);font-weight:700;font-size:.92rem}
+
+  .fundaciones{background:var(--crema-gris);padding:80px 40px}
+  .fund-inner{max-width:1000px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap}
+  .fundaciones h2{font-family:var(--display);color:var(--turquesa);font-size:clamp(1.8rem,4vw,2.8rem);line-height:.95}
+  .logos{display:flex;gap:46px;align-items:center;flex-wrap:wrap}
+  .logos img{height:70px;width:auto;object-fit:contain}
+  .logos img.unicef{height:42px}
+  .logos img.conicet{height:58px}
+
+  footer{background:var(--rojo);color:#fff;padding:60px 40px 30px}
+  .foot-inner{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:40px}
+  .foot-logo{height:70px;margin-bottom:18px}
+  .foot-logo img{height:100%}
+  .foot-form p{font-weight:700;margin-bottom:14px}
+  .foot-form .field{display:flex;background:#fff;border-radius:30px;overflow:hidden;max-width:330px}
+  .foot-form input{flex:1;border:none;padding:14px 20px;font-family:var(--cuerpo);font-size:.9rem;outline:none}
+  .foot-form button{background:var(--turquesa);border:none;color:#fff;padding:0 22px;cursor:pointer;font-size:1.1rem}
+  .foot-col h4{font-size:.8rem;letter-spacing:1px;margin-bottom:16px;text-transform:uppercase;opacity:.85}
+  .foot-col a{display:block;color:#fff;text-decoration:none;font-size:.9rem;margin-bottom:10px;opacity:.9}
+  .foot-col a:hover{opacity:.6}
+  .foot-bottom{max-width:1000px;margin:40px auto 0;display:flex;justify-content:space-between;font-size:.75rem;opacity:.7;border-top:1px solid rgba(255,255,255,.2);padding-top:20px}
+
+  .reveal{opacity:0;transform:translateY(40px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.visible{opacity:1;transform:translateY(0)}
+
+  @media(max-width:780px){
+    .nav-left,.nav-right{display:none;position:absolute;top:74px;left:20px;right:20px;background:var(--rojo);flex-direction:column;border-radius:20px;padding:22px;gap:18px}
+    .nav.open .nav-left{display:flex}
+    .nav.open .nav-right{display:flex}
+    .hamburger{display:flex}
+    .nav{justify-content:space-between}
+    .nav-logo{height:42px}
+    .mision-inner{grid-template-columns:1fr;text-align:center;gap:24px}
+    .suc-grid{grid-template-columns:1fr;max-width:300px}
+    .fund-inner{flex-direction:column;text-align:center;gap:30px}
+    .foot-inner{grid-template-columns:1fr;gap:30px}
+    .dino-verde{left:8%;width:140px}
+    .dino-celeste{right:6%;width:110px}
+    .hero h1{font-size:2.1rem}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="nav" id="nav">
+    <button class="hamburger" id="hamburger" aria-label="menu"><span></span><span></span><span></span></button>
+    <div class="nav-left">
+      <a href="#inicio">INICIO</a>
+      <a href="#mision">LA CHOCOLATERÍA</a>
+    </div>
+    <div class="nav-logo"><img src="assets/logo.png" alt="Chocofari"></div>
+    <div class="nav-right">
+      <a href="#productos">PRODUCTOS</a>
+      <a href="#contacto">CONTACTO</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero" id="inicio">
+  <div class="hero-bg"></div>
+  <img src="assets/dino-verde.png" class="dino dino-verde" alt="">
+  <img src="assets/dino-celeste.png" class="dino dino-celeste" alt="">
+  <div class="hero-content">
+    <h1>CONOCÉ LOS NUEVOS CHOCOSAURIOS</h1>
+    <a href="#productos" class="btn">Ver más</a>
+  </div>
+  <a href="#mision" class="scroll-down" aria-label="bajar">↓</a>
+</section>
+
+<section class="mision" id="mision">
+  <div class="mision-inner">
+    <h2 class="reveal">nuestra misión.</h2>
+    <p class="reveal">La naturaleza no tiene límites, aprender de ella tampoco. Expandimos nuevos horizontes a través del sabor del chocolate para que los más pequeños abracen el mundo y sean los protagonistas de su siguiente aventura.</p>
+  </div>
+</section>
+
+<section class="productos" id="productos">
+  <div class="carrusel reveal">
+    <button class="arrow" id="prev">‹</button>
+    <div class="slide-wrap">
+      <div class="slides" id="slides">
+        <div class="slide"><img src="assets/pack-1.png" alt="Chocosaurios azul"></div>
+        <div class="slide"><img src="assets/pack-2.png" alt="Chocosaurios verde"></div>
+        <div class="slide"><img src="assets/pack-3.png" alt="Chocosaurios amarillo"></div>
+        <div class="slide"><img src="assets/pack-4.png" alt="Chocosaurios rojo"></div>
+      </div>
+    </div>
+    <button class="arrow" id="next">›</button>
+  </div>
+  <div class="dots" id="dots"></div>
+</section>
+
+<section class="sucursales">
+  <h2 class="reveal">CONOCÉ NUESTRAS SUCURSALES...</h2>
+  <div class="suc-grid">
+    <div class="suc reveal"><svg class="pin" viewBox="0 0 24 24"><path d="M12 0C7 0 3 4 3 9c0 6 9 15 9 15s9-9 9-15c0-5-4-9-9-9zm0 12a3 3 0 110-6 3 3 0 010 6z"/></svg><div><strong>MICROCENTRO</strong><span>Av. Corrientes 1315, CABA</span></div></div>
+    <div class="suc reveal"><svg class="pin" viewBox="0 0 24 24"><path d="M12 0C7 0 3 4 3 9c0 6 9 15 9 15s9-9 9-15c0-5-4-9-9-9zm0 12a3 3 0 110-6 3 3 0 010 6z"/></svg><div><strong>BELGRANO</strong><span>Blanco Encalada 2245, CABA</span></div></div>
+    <div class="suc reveal"><svg class="pin" viewBox="0 0 24 24"><path d="M12 0C7 0 3 4 3 9c0 6 9 15 9 15s9-9 9-15c0-5-4-9-9-9zm0 12a3 3 0 110-6 3 3 0 010 6z"/></svg><div><strong>PALERMO</strong><span>Thames 2168, CABA</span></div></div>
+    <div class="suc reveal"><svg class="pin" viewBox="0 0 24 24"><path d="M12 0C7 0 3 4 3 9c0 6 9 15 9 15s9-9 9-15c0-5-4-9-9-9zm0 12a3 3 0 110-6 3 3 0 010 6z"/></svg><div><strong>AVELLANEDA</strong><span>Av. Bartolomé Mitre 1946, Bs. As.</span></div></div>
+  </div>
+</section>
+
+<section class="fundaciones">
+  <div class="fund-inner">
+    <h2 class="reveal">fundaciones<br>asociadas.</h2>
+    <div class="logos reveal">
+      <img src="assets/unicef.png" class="unicef" alt="UNICEF">
+      <img src="assets/conicet.png" class="conicet" alt="CONICET">
+      <img src="assets/uba.png" class="uba" alt="UBA">
+    </div>
+  </div>
+</section>
+
+<footer id="contacto">
+  <div class="foot-inner">
+    <div class="foot-form">
+      <div class="foot-logo"><img src="assets/logo.png" alt="Chocofari"></div>
+      <p>Tu opinión nos importa, envianos un mensaje!</p>
+      <div class="field">
+        <input type="text" placeholder="Empieza a escribir">
+        <button onclick="location.href='#'" aria-label="enviar">➤</button>
+      </div>
+    </div>
+    <div class="foot-col">
+      <h4>Explorar</h4>
+      <a href="#">Mapa de sitio</a>
+      <a href="#">Política de Privacidad</a>
+      <a href="#">Defensa al consumidor</a>
+    </div>
+    <div class="foot-col">
+      <h4>Seguinos en redes</h4>
+      <a href="#">Instagram</a>
+      <a href="#">Youtube</a>
+      <a href="#">TikTok</a>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>Chocofari SRL</span>
+    <span>2026 — Todos los derechos reservados</span>
+  </div>
+</footer>
+
+<script>
+  const hamburger=document.getElementById('hamburger');
+  const nav=document.getElementById('nav');
+  hamburger.addEventListener('click',()=>nav.classList.toggle('open'));
+  document.querySelectorAll('.nav a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
+
+  const slides=document.getElementById('slides');
+  const dotsWrap=document.getElementById('dots');
+  const total=4;let idx=0;
+  for(let i=0;i<total;i++){
+    const d=document.createElement('div');
+    d.className='dot'+(i===0?' active':'');
+    d.addEventListener('click',()=>go(i));
+    dotsWrap.appendChild(d);
+  }
+  function go(i){
+    idx=(i+total)%total;
+    slides.style.transform='translateX(-'+(idx*100)+'%)';
+    document.querySelectorAll('.dot').forEach((d,j)=>d.classList.toggle('active',j===idx));
+  }
+  document.getElementById('next').addEventListener('click',()=>go(idx+1));
+  document.getElementById('prev').addEventListener('click',()=>go(idx-1));
+  setInterval(()=>go(idx+1),5000);
+
+  const obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible')});
+  },{threshold:.15});
+  document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el)});
+</script>
+</body>
+</html>
