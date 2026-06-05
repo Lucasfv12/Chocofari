@@ -111,20 +111,21 @@
     #prev{left:2px;background:rgba(255,255,255,.55);border-radius:50%}
     #next{right:2px;background:rgba(255,255,255,.55);border-radius:50%}
     .carrusel{max-width:100%;width:100%}
-    .nav-left,.nav-right{display:none;position:absolute;left:20px;right:20px;background:var(--rojo);flex-direction:column;padding:0;gap:16px;box-shadow:none}
-    .nav-left{top:72px;border-radius:20px 20px 0 0;padding:20px 22px 8px}
-    .nav-right{top:142px;border-radius:0 0 20px 20px;padding:8px 22px 20px}
+    .nav{justify-content:space-between;gap:0;height:auto;padding:8px 20px}
+    .nav-left,.nav-right{display:none;position:fixed;left:0;right:0;width:calc(100vw - 40px);margin:0 20px;background:var(--rojo);flex-direction:column;padding:0;gap:0;box-shadow:0 6px 20px rgba(0,0,0,.2);z-index:90;box-sizing:border-box}
+    .nav-left{top:78px;border-radius:18px 18px 0 0;padding-top:6px;box-shadow:none}
+    .nav-right{top:174px;border-radius:0 0 18px 18px;padding-bottom:6px;box-shadow:0 8px 20px rgba(0,0,0,.2)}
     .nav.open .nav-left{display:flex}
     .nav.open .nav-right{display:flex}
+    .nav-left a,.nav-right a{padding:14px 22px;display:block;line-height:1;text-align:center;white-space:nowrap}
     .nav a{text-shadow:none}
-    .hamburger{display:flex}
-    .nav{justify-content:space-between;gap:0;height:auto;padding:8px 20px}
-    .nav-logo{position:static;transform:none;height:54px}
-    .nav-left{margin-right:0}
-    .nav-right{margin-left:0}
+    .hamburger{display:flex;order:1}
+    .nav-logo{position:static;transform:none;height:54px;order:2;margin-left:auto}
     .mision-inner{grid-template-columns:1fr;text-align:center;gap:24px}
     .suc-grid{grid-template-columns:1fr;max-width:300px}
     .fund-inner{flex-direction:column;text-align:center;gap:30px}
+    .fundaciones h2{text-align:center}
+    .logos{justify-content:center}
     .foot-inner{grid-template-columns:1fr;gap:30px}
     .dino-verde{left:8%;width:140px}
     .dino-celeste{right:6%;width:110px}
