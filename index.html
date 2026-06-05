@@ -54,16 +54,18 @@
   .mision h2{font-family:var(--display);font-weight:800;color:var(--rojo);font-size:clamp(2.2rem,4vw,3.2rem);line-height:.95}
   .mision p{color:var(--rojo);font-weight:600;font-size:1.1rem;line-height:1.7}
 
-  .productos{background:var(--turquesa);padding:60px 40px}
-  .carrusel{max-width:900px;margin:0 auto;position:relative;display:flex;align-items:center;justify-content:center;gap:10px}
-  .slide-wrap{overflow:hidden;width:420px;max-width:78%}
+  .productos{position:relative;overflow:hidden}
+  .carrusel{position:relative;width:100%}
+  .slide-wrap{overflow:hidden;width:100%}
   .slides{display:flex;transition:transform .5s ease}
-  .slide{min-width:100%;display:flex;justify-content:center}
-  .slide img{width:100%;max-width:420px;object-fit:contain;border-radius:8px}
-  .arrow{background:none;border:none;color:var(--rojo);font-size:3.4rem;cursor:pointer;padding:0 6px;line-height:1;user-select:none;transition:transform .15s}
-  .arrow:hover{transform:scale(1.2)}
-  .dots{display:flex;gap:10px;justify-content:center;margin-top:24px}
-  .dot{width:11px;height:11px;border-radius:50%;background:rgba(255,255,255,.45);cursor:pointer;transition:.3s}
+  .slide{min-width:100%}
+  .slide img{width:100%;height:70vh;max-height:620px;display:block;object-fit:cover}
+  .arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:6;background:rgba(255,255,255,.35);border:none;color:#fff;width:52px;height:52px;border-radius:50%;font-size:2rem;cursor:pointer;line-height:1;user-select:none;transition:background .2s;display:flex;align-items:center;justify-content:center}
+  .arrow:hover{background:rgba(255,255,255,.6)}
+  #prev{left:20px}
+  #next{right:20px}
+  .dots{position:absolute;bottom:18px;left:0;right:0;display:flex;gap:10px;justify-content:center;z-index:6}
+  .dot{width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,.5);cursor:pointer;transition:.3s;border:1px solid rgba(0,0,0,.15)}
   .dot.active{background:#fff}
 
   .sucursales{background:var(--naranja);padding:70px 40px;text-align:center}
@@ -152,18 +154,18 @@
 
 <section class="productos" id="productos">
   <div class="carrusel reveal">
-    <button class="arrow" id="prev">‹</button>
     <div class="slide-wrap">
       <div class="slides" id="slides">
-        <div class="slide"><img src="assets/pack-1.png" alt="Chocosaurios azul"></div>
-        <div class="slide"><img src="assets/pack-2.png" alt="Chocosaurios verde"></div>
-        <div class="slide"><img src="assets/pack-3.png" alt="Chocosaurios amarillo"></div>
-        <div class="slide"><img src="assets/pack-4.png" alt="Chocosaurios rojo"></div>
+        <div class="slide"><img src="assets/slide-1.jpg" alt="Chocosaurios chocolate de leche"></div>
+        <div class="slide"><img src="assets/slide-2.jpg" alt="Chocosaurios chocolate de leche"></div>
+        <div class="slide"><img src="assets/slide-3.jpg" alt="Chocosaurios chocolate de leche"></div>
+        <div class="slide"><img src="assets/slide-4.jpg" alt="Chocosaurios chocolate de leche"></div>
       </div>
     </div>
+    <button class="arrow" id="prev">‹</button>
     <button class="arrow" id="next">›</button>
+    <div class="dots" id="dots"></div>
   </div>
-  <div class="dots" id="dots"></div>
 </section>
 
 <section class="sucursales">
