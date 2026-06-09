@@ -28,9 +28,13 @@
   .nav a{font-family:'Cabin',sans-serif;color:#fff;text-decoration:none;font-weight:700;font-size:.9rem;letter-spacing:.5px;transition:opacity .2s;text-shadow:0 1px 4px rgba(0,0,0,.55)}
   header.scrolled .nav a{text-shadow:none}
   .nav a:hover{opacity:.7}
-  .nav-left,.nav-right{display:flex;gap:0;align-items:center;flex:1;justify-content:space-evenly}
-  .nav-right{margin-left:150px}
-  .nav-left{margin-right:150px}
+  .nav-menu-left{display:flex;gap:0;align-items:center;flex:1;justify-content:space-evenly;margin-right:150px}
+  .nav-menu-right{display:flex;gap:0;align-items:center;flex:1;justify-content:space-evenly;margin-left:150px}
+  .nav-menu{display:none}  /* solo visible en mobile */
+  /* Hamburger → X */
+  .hamburger.active span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+  .hamburger.active span:nth-child(2){opacity:0;transform:scaleX(0)}
+  .hamburger.active span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
   .nav-logo{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);height:108px;z-index:2}
   .nav-logo img{height:100%}
   .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none}
@@ -111,13 +115,12 @@
     #prev{left:2px;background:rgba(255,255,255,.55);border-radius:50%}
     #next{right:2px;background:rgba(255,255,255,.55);border-radius:50%}
     .carrusel{max-width:100%;width:100%}
-    .nav{justify-content:space-between;gap:0;height:auto;padding:8px 20px}
-    .nav-left,.nav-right{display:none;position:fixed;left:0;right:0;width:calc(100vw - 40px);margin:0 20px;background:var(--rojo);flex-direction:column;padding:0;gap:0;box-shadow:0 6px 20px rgba(0,0,0,.2);z-index:90;box-sizing:border-box}
-    .nav-left{top:78px;border-radius:18px 18px 0 0;padding-top:6px;box-shadow:none}
-    .nav-right{top:174px;border-radius:0 0 18px 18px;padding-bottom:6px;box-shadow:0 8px 20px rgba(0,0,0,.2)}
-    .nav.open .nav-left{display:flex}
-    .nav.open .nav-right{display:flex}
-    .nav-left a,.nav-right a{padding:14px 22px;display:block;line-height:1;text-align:center;white-space:nowrap}
+    .nav{justify-content:space-between;gap:0;height:auto;padding:8px 20px;flex-wrap:wrap}
+    .nav-menu-left,.nav-menu-right{display:none}
+    .nav-menu{display:none;width:100%;flex-direction:column;background:var(--rojo);border-radius:18px;margin-top:8px;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,.22)}
+    .nav.open .nav-menu{display:flex}
+    .nav-menu a{padding:15px 22px;display:block;line-height:1;text-align:center;white-space:nowrap;border-bottom:1px solid rgba(255,255,255,.12)}
+    .nav-menu a:last-child{border-bottom:none}
     .nav a{text-shadow:none}
     .hamburger{display:flex;order:1}
     .nav-logo{position:static;transform:none;height:54px;order:2;margin-left:auto}
@@ -140,12 +143,18 @@
 <header>
   <nav class="nav" id="nav">
     <button class="hamburger" id="hamburger" aria-label="menu"><span></span><span></span><span></span></button>
-    <div class="nav-left">
+    <div class="nav-logo"><img src="assets/logo.png" alt="Chocofari"></div>
+    <div class="nav-menu-left">
       <a href="#inicio">INICIO</a>
       <a href="#mision">LA CHOCOLATERÍA</a>
     </div>
-    <div class="nav-logo"><img src="assets/logo.png" alt="Chocofari"></div>
-    <div class="nav-right">
+    <div class="nav-menu-right">
+      <a href="#productos">PRODUCTOS</a>
+      <a href="#contacto">CONTACTO</a>
+    </div>
+    <div class="nav-menu" id="nav-menu">
+      <a href="#inicio">INICIO</a>
+      <a href="#mision">LA CHOCOLATERÍA</a>
       <a href="#productos">PRODUCTOS</a>
       <a href="#contacto">CONTACTO</a>
     </div>
@@ -238,8 +247,27 @@
 <script>
   const hamburger=document.getElementById('hamburger');
   const nav=document.getElementById('nav');
-  hamburger.addEventListener('click',()=>nav.classList.toggle('open'));
-  document.querySelectorAll('.nav a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
+
+  // Toggle hamburger
+  hamburger.addEventListener('click',()=>{
+    nav.classList.toggle('open');
+    // Animación de las 3 barras → X
+    hamburger.classList.toggle('active');
+  });
+
+  // Cerrar menú al clickear cualquier link
+  document.querySelectorAll('.nav a').forEach(a=>a.addEventListener('click',()=>{
+    nav.classList.remove('open');
+    hamburger.classList.remove('active');
+  }));
+
+  // Cerrar menú al clickear fuera
+  document.addEventListener('click',(e)=>{
+    if(!nav.contains(e.target)){
+      nav.classList.remove('open');
+      hamburger.classList.remove('active');
+    }
+  });
 
   const slides=document.getElementById('slides');
   const dotsWrap=document.getElementById('dots');
