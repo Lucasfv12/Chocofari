@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Productos — Chocofari</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;600;700&family=League+Spartan:wght@600;700;800;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --rojo:#CC3335;
+    --crema-gris:#EAE9E3;
+    --turquesa:#339F9F;
+    --naranja:#F79226;
+    --crema:#F9F8D7;
+    --texto:#3a2e2a;
+    --display:'League Spartan',sans-serif;
+    --cuerpo:'Nunito',sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--cuerpo);color:var(--texto);background:var(--crema-gris);overflow-x:hidden}
+
+  /* ── NAV ── */
+  header{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 20px}
+  .nav{position:relative;max-width:1100px;margin:0 auto;background:var(--rojo);border-radius:40px;display:flex;align-items:center;justify-content:space-evenly;gap:10px;height:62px;padding:0 24px;box-shadow:0 6px 20px rgba(0,0,0,.18)}
+  .nav a{font-family:'Cabin',sans-serif;color:#fff;text-decoration:none;font-weight:700;font-size:.9rem;letter-spacing:.5px;transition:opacity .2s}
+  .nav a:hover{opacity:.7}
+  .nav-menu-left{display:flex;gap:0;align-items:center;flex:1;justify-content:space-evenly;margin-right:150px}
+  .nav-menu-right{display:flex;gap:0;align-items:center;flex:1;justify-content:space-evenly;margin-left:150px}
+  .nav-logo{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);height:108px;z-index:2}
+  .nav-logo img{height:100%}
+  .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none}
+  .hamburger span{width:26px;height:3px;background:#fff;border-radius:3px;transition:.3s}
+  .hamburger.active span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+  .hamburger.active span:nth-child(2){opacity:0;transform:scaleX(0)}
+  .hamburger.active span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+  .nav-menu{display:none}
+
+  /* ── HERO NARANJA ── */
+  .prod-hero{
+    background:var(--naranja);
+    padding:160px 40px 80px;
+    text-align:center;
+  }
+  .prod-hero h1{
+    font-family:var(--display);
+    font-weight:900;
+    font-size:clamp(2.8rem,6vw,4.5rem);
+    color:var(--crema);
+    letter-spacing:2px;
+    margin-bottom:20px;
+  }
+  .prod-hero p{
+    font-family:'Cabin',sans-serif;
+    font-size:1.05rem;
+    color:#fff;
+    max-width:44ch;
+    margin:0 auto 36px;
+    line-height:1.55;
+  }
+  .btn-tienda{
+    display:inline-block;
+    background:var(--turquesa);
+    color:#fff;
+    font-family:'Cabin',sans-serif;
+    font-weight:700;
+    font-size:1rem;
+    padding:16px 52px;
+    border-radius:40px;
+    text-decoration:none;
+    letter-spacing:.5px;
+    transition:opacity .2s,transform .2s;
+  }
+  .btn-tienda:hover{opacity:.85;transform:translateY(-2px)}
+
+  /* ── SECCIÓN GRID ── */
+  .prod-section{
+    background:var(--crema-gris);
+    padding:80px 40px;
+  }
+  .prod-inner{max-width:1060px;margin:0 auto}
+
+  /* Grid 4 tarjetas */
+  .prod-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:22px;
+    margin-bottom:30px;
+  }
+  .prod-card{
+    background:#fff;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 2px 12px rgba(0,0,0,.07);
+    transition:transform .25s,box-shadow .25s;
+  }
+  .prod-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,.13)}
+  .prod-card-img{
+    width:100%;
+    aspect-ratio:4/3;
+    object-fit:cover;
+    display:block;
+  }
+  .prod-card-body{padding:16px 18px 20px}
+  .prod-card-body p{
+    font-family:'Cabin',sans-serif;
+    font-weight:700;
+    font-size:.88rem;
+    color:var(--turquesa);
+    line-height:1.4;
+  }
+
+  /* Tarjeta especial */
+  .prod-especial{
+    background:#fff;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 2px 12px rgba(0,0,0,.07);
+    display:grid;
+    grid-template-columns:1fr 1.2fr;
+    max-width:520px;
+    margin:0 auto;
+    transition:transform .25s,box-shadow .25s;
+  }
+  .prod-especial:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,.13)}
+  .prod-especial-img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    min-height:180px;
+  }
+  .prod-especial-body{
+    padding:24px 22px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:10px;
+  }
+  .badge-especial{
+    font-family:var(--display);
+    font-weight:900;
+    font-size:1.1rem;
+    color:var(--naranja);
+    letter-spacing:1px;
+  }
+  .prod-especial-body p{
+    font-family:'Cabin',sans-serif;
+    font-weight:700;
+    font-size:.9rem;
+    color:var(--turquesa);
+    line-height:1.45;
+  }
+
+  /* ── FOOTER ── */
+  footer{background:var(--rojo);color:#fff;padding:60px 40px 30px}
+  .foot-inner{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:40px}
+  .foot-logo{height:70px;margin-bottom:18px}
+  .foot-logo img{height:100%}
+  .foot-form p{font-weight:700;margin-bottom:14px}
+  .foot-form .field{display:flex;background:#fff;border-radius:30px;overflow:hidden;max-width:330px}
+  .foot-form input{flex:1;border:none;padding:14px 20px;font-family:var(--cuerpo);font-size:.9rem;outline:none}
+  .foot-form button{background:var(--turquesa);border:none;color:#fff;padding:0 22px;cursor:pointer;font-size:1.1rem}
+  .foot-col h4{font-size:.8rem;letter-spacing:1px;margin-bottom:16px;text-transform:uppercase;opacity:.85}
+  .foot-col a{display:block;color:#fff;text-decoration:none;font-size:.9rem;margin-bottom:10px;opacity:.9}
+  .foot-col a:hover{opacity:.6}
+  .foot-bottom{max-width:1000px;margin:40px auto 0;display:flex;justify-content:space-between;font-size:.75rem;opacity:.7;border-top:1px solid rgba(255,255,255,.2);padding-top:20px}
+
+  /* ── REVEAL ── */
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.visible{opacity:1;transform:translateY(0)}
+
+  /* ── MOBILE ── */
+  @media(max-width:780px){
+    .nav{justify-content:space-between;height:auto;padding:8px 20px;flex-wrap:wrap}
+    .nav-menu-left,.nav-menu-right{display:none}
+    .nav-menu{display:none;width:100%;flex-direction:column;background:var(--rojo);border-radius:18px;margin-top:8px;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,.22)}
+    .nav.open .nav-menu{display:flex}
+    .nav-menu a{padding:15px 22px;display:block;text-align:center;border-bottom:1px solid rgba(255,255,255,.12)}
+    .nav-menu a:last-child{border-bottom:none}
+    .hamburger{display:flex;order:1}
+    .nav-logo{position:static;transform:none;height:54px;order:2;margin-left:auto}
+
+    .prod-hero{padding:120px 24px 60px}
+
+    .prod-section{padding:50px 20px}
+
+    /* Mobile: lista vertical */
+    .prod-grid{
+      grid-template-columns:1fr;
+      gap:14px;
+    }
+    .prod-card{
+      display:grid;
+      grid-template-columns:140px 1fr;
+      border-radius:16px;
+    }
+    .prod-card-img{
+      aspect-ratio:unset;
+      height:100%;
+      min-height:110px;
+    }
+    .prod-card-body{
+      display:flex;
+      align-items:center;
+      padding:16px 18px;
+    }
+
+    .prod-especial{
+      grid-template-columns:140px 1fr;
+      max-width:100%;
+    }
+    .prod-especial-img{min-height:110px}
+
+    .foot-inner{grid-template-columns:1fr;gap:30px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="nav" id="nav">
+    <button class="hamburger" id="hamburger" aria-label="menu"><span></span><span></span><span></span></button>
+    <div class="nav-logo"><img src="assets/logo.png" alt="Chocofari"></div>
+    <div class="nav-menu-left">
+      <a href="index.html#inicio">INICIO</a>
+      <a href="chocolateria.html">LA CHOCOLATERÍA</a>
+    </div>
+    <div class="nav-menu-right">
+      <a href="productos.html">PRODUCTOS</a>
+      <a href="index.html#contacto">CONTACTO</a>
+    </div>
+    <div class="nav-menu" id="nav-menu">
+      <a href="index.html#inicio">INICIO</a>
+      <a href="chocolateria.html">LA CHOCOLATERÍA</a>
+      <a href="productos.html">PRODUCTOS</a>
+      <a href="index.html#contacto">CONTACTO</a>
+    </div>
+  </nav>
+</header>
+
+<!-- HERO NARANJA -->
+<section class="prod-hero">
+  <h1 class="reveal">PRODUCTOS</h1>
+  <p class="reveal">Probá los Chocosaurios por estas Pascuas así como el resto de productos de nuestra línea permanente! Visita nuestra tienda.</p>
+  <a href="#" class="btn-tienda reveal">Tienda</a>
+</section>
+
+<!-- GRID DE PRODUCTOS -->
+<section class="prod-section" id="productos">
+  <div class="prod-inner">
+
+    <div class="prod-grid">
+      <div class="prod-card reveal">
+        <img class="prod-card-img" src="assets/prod-limon.jpg" alt="Chocosaurios Limón">
+        <div class="prod-card-body"><p>Chocolate de Leche Chocosaurios Relleno Limón 60gr.</p></div>
+      </div>
+      <div class="prod-card reveal">
+        <img class="prod-card-img" src="assets/prod-dulce.jpg" alt="Chocosaurios Dulce de Leche">
+        <div class="prod-card-body"><p>Chocolate de Leche Chocosaurios Relleno Dulce de Leche 60gr.</p></div>
+      </div>
+      <div class="prod-card reveal">
+        <img class="prod-card-img" src="assets/prod-frutilla.jpg" alt="Chocosaurios Frutilla">
+        <div class="prod-card-body"><p>Chocolate de Leche Chocosaurios Relleno Frutilla 60gr.</p></div>
+      </div>
+      <div class="prod-card reveal">
+        <img class="prod-card-img" src="assets/prod-chocolate.jpg" alt="Chocosaurios Chocolate">
+        <div class="prod-card-body"><p>Chocolate de Leche Chocosaurios Relleno Chocolate 60gr.</p></div>
+      </div>
+    </div>
+
+    <!-- ESPECIAL -->
+    <div class="prod-especial reveal">
+      <img class="prod-especial-img" src="assets/prod-pack.png" alt="Pack Familiar Chocosaurios">
+      <div class="prod-especial-body">
+        <span class="badge-especial">ESPECIAL</span>
+        <p>Chocolate de Leche Chocosaurios Rellenos 4un. 240gr.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contacto">
+  <div class="foot-inner">
+    <div class="foot-form">
+      <div class="foot-logo"><img src="assets/logo.png" alt="Chocofari"></div>
+      <p>Tu opinión nos importa, envianos un mensaje!</p>
+      <div class="field">
+        <input type="text" placeholder="Empieza a escribir">
+        <button onclick="location.href='#'" aria-label="enviar">➤</button>
+      </div>
+    </div>
+    <div class="foot-col">
+      <h4>Explorar</h4>
+      <a href="#">Mapa de sitio</a>
+      <a href="#">Política de Privacidad</a>
+      <a href="#">Defensa al consumidor</a>
+    </div>
+    <div class="foot-col">
+      <h4>Seguinos en redes</h4>
+      <a href="#">Instagram</a>
+      <a href="#">Youtube</a>
+      <a href="#">TikTok</a>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>Chocofari SRL</span>
+    <span>2026 — Todos los derechos reservados</span>
+  </div>
+</footer>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const nav = document.getElementById('nav');
+
+  hamburger.addEventListener('click', () => {
+    nav.classList.toggle('open');
+    hamburger.classList.toggle('active');
+  });
+  document.querySelectorAll('.nav a').forEach(a => a.addEventListener('click', () => {
+    nav.classList.remove('open');
+    hamburger.classList.remove('active');
+  }));
+  document.addEventListener('click', (e) => {
+    if (!nav.contains(e.target)) {
+      nav.classList.remove('open');
+      hamburger.classList.remove('active');
+    }
+  });
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: .12 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
