@@ -118,10 +118,15 @@
   /* Imagen del chocolate — detrás de la tarjeta, sobresale a la derecha */
   .contacto-choco{
     position:relative;
-    z-index:0;           /* detrás de la tarjeta */
-    margin-left:-60px;   /* se mete bajo la tarjeta */
+    z-index:0;
+    margin-left:-160px;  /* más adentro bajo la tarjeta */
     flex-shrink:0;
-    width:420px;
+    width:520px;
+  }
+  /* En desktop el chocolate va a la derecha */
+  @media(min-width:781px){
+    .contacto-choco{ order:1 }
+    .form-card{ order:0 }
   }
   .contacto-choco img{
     width:100%;
@@ -215,13 +220,13 @@
   <h1 class="reveal">CONTACTO</h1>
 
   <div class="contacto-body reveal">
+    <div class="contacto-choco">
+      <img src="assets/contacto-chocolate.webp" alt="Tableta de chocolate">
+    </div>
     <div class="form-card">
       <input type="email" placeholder="Ingresá tu correo">
       <textarea placeholder="Escribí tu consulta"></textarea>
       <button class="btn-enviar">Enviar</button>
-    </div>
-    <div class="contacto-choco">
-      <img src="assets/contacto-chocolate.webp" alt="Tableta de chocolate">
     </div>
   </div>
 </main>
