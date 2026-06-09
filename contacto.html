@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contacto — Chocofari</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;600;700&family=League+Spartan:wght@600;700;800;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --rojo:#CC3335;
+    --crema-gris:#EAE9E3;
+    --turquesa:#339F9F;
+    --naranja:#F79226;
+    --crema:#F9F8D7;
+    --texto:#3a2e2a;
+    --display:'League Spartan',sans-serif;
+    --cuerpo:'Nunito',sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--cuerpo);color:var(--texto);background:var(--crema-gris);overflow-x:hidden}
+
+  /* ── NAV ── */
+  header{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 20px}
+  .nav{position:relative;max-width:1100px;margin:0 auto;background:var(--rojo);border-radius:40px;display:flex;align-items:center;justify-content:space-evenly;gap:10px;height:62px;padding:0 24px;box-shadow:0 6px 20px rgba(0,0,0,.18)}
+  .nav a{font-family:'Cabin',sans-serif;color:#fff;text-decoration:none;font-weight:700;font-size:.9rem;letter-spacing:.5px;transition:opacity .2s}
+  .nav a:hover{opacity:.7}
+  .nav-menu-left{display:flex;gap:0;align-items:center;flex:1;justify-content:space-evenly;margin-right:150px}
+  .nav-menu-right{display:flex;gap:0;align-items:center;flex:1;justify-content:space-evenly;margin-left:150px}
+  .nav-logo{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);height:108px;z-index:2}
+  .nav-logo img{height:100%}
+  .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none}
+  .hamburger span{width:26px;height:3px;background:#fff;border-radius:3px;transition:.3s}
+  .hamburger.active span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+  .hamburger.active span:nth-child(2){opacity:0;transform:scaleX(0)}
+  .hamburger.active span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+  .nav-menu{display:none}
+
+  /* ── MAIN ── */
+  .contacto-main{
+    min-height:calc(100vh - 200px);
+    padding:160px 40px 100px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+
+  .contacto-main h1{
+    font-family:var(--display);
+    font-weight:900;
+    font-size:clamp(2.4rem,5vw,3.8rem);
+    color:var(--rojo);
+    letter-spacing:2px;
+    margin-bottom:50px;
+  }
+
+  /* Contenedor formulario + imagen */
+  .contacto-body{
+    display:flex;
+    align-items:center;
+    gap:0;
+    max-width:900px;
+    width:100%;
+  }
+
+  /* Tarjeta azul del formulario */
+  .form-card{
+    background:#65C3E0;
+    border-radius:28px;
+    padding:30px 28px 28px;
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+    flex:1;
+    position:relative;
+    z-index:1;
+  }
+
+  .form-card input,
+  .form-card textarea{
+    width:100%;
+    background:var(--crema-gris);
+    border:none;
+    border-radius:20px;
+    padding:18px 22px;
+    font-family:'Cabin',sans-serif;
+    font-size:.95rem;
+    color:var(--rojo);
+    outline:none;
+    resize:none;
+  }
+  .form-card input::placeholder,
+  .form-card textarea::placeholder{
+    color:var(--rojo);
+    opacity:.75;
+  }
+  .form-card textarea{
+    min-height:140px;
+  }
+  .btn-enviar{
+    align-self:flex-start;
+    background:var(--turquesa);
+    color:#fff;
+    border:none;
+    border-radius:40px;
+    padding:16px 48px;
+    font-family:'Cabin',sans-serif;
+    font-weight:700;
+    font-size:1rem;
+    cursor:pointer;
+    transition:opacity .2s,transform .2s;
+  }
+  .btn-enviar:hover{opacity:.85;transform:translateY(-2px)}
+
+  /* Imagen del chocolate — sobresale a la derecha */
+  .contacto-choco{
+    width:340px;
+    flex-shrink:0;
+    margin-left:-20px;
+    position:relative;
+    z-index:0;
+    /* recortamos el lado izquierdo que queda bajo la tarjeta */
+    clip-path:inset(0 0 0 40px);
+  }
+  .contacto-choco img{
+    width:100%;
+    display:block;
+    filter:drop-shadow(6px 10px 18px rgba(0,0,0,.18));
+  }
+
+  /* ── FOOTER ── */
+  footer{background:var(--rojo);color:#fff;padding:60px 40px 30px}
+  .foot-inner{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:40px}
+  .foot-logo{height:70px;margin-bottom:18px}
+  .foot-logo img{height:100%}
+  .foot-form p{font-weight:700;margin-bottom:14px}
+  .foot-form .field{display:flex;background:#fff;border-radius:30px;overflow:hidden;max-width:330px}
+  .foot-form input{flex:1;border:none;padding:14px 20px;font-family:var(--cuerpo);font-size:.9rem;outline:none}
+  .foot-form button{background:var(--turquesa);border:none;color:#fff;padding:0 22px;cursor:pointer;font-size:1.1rem}
+  .foot-col h4{font-size:.8rem;letter-spacing:1px;margin-bottom:16px;text-transform:uppercase;opacity:.85}
+  .foot-col a{display:block;color:#fff;text-decoration:none;font-size:.9rem;margin-bottom:10px;opacity:.9}
+  .foot-col a:hover{opacity:.6}
+  .foot-bottom{max-width:1000px;margin:40px auto 0;display:flex;justify-content:space-between;font-size:.75rem;opacity:.7;border-top:1px solid rgba(255,255,255,.2);padding-top:20px}
+
+  /* ── REVEAL ── */
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.visible{opacity:1;transform:translateY(0)}
+
+  /* ── MOBILE ── */
+  @media(max-width:780px){
+    .nav{justify-content:space-between;height:auto;padding:8px 20px;flex-wrap:wrap}
+    .nav-menu-left,.nav-menu-right{display:none}
+    .nav-menu{display:none;width:100%;flex-direction:column;background:var(--rojo);border-radius:18px;margin-top:8px;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,.22)}
+    .nav.open .nav-menu{display:flex}
+    .nav-menu a{padding:15px 22px;display:block;text-align:center;border-bottom:1px solid rgba(255,255,255,.12)}
+    .nav-menu a:last-child{border-bottom:none}
+    .hamburger{display:flex;order:1}
+    .nav-logo{position:static;transform:none;height:54px;order:2;margin-left:auto}
+
+    .contacto-main{padding:110px 20px 70px}
+
+    .contacto-body{
+      flex-direction:column;
+      gap:0;
+      align-items:center;
+    }
+
+    /* En mobile el chocolate va arriba, centrado */
+    .contacto-choco{
+      width:240px;
+      margin-left:0;
+      margin-bottom:-20px;
+      clip-path:none;
+      order:-1;
+      z-index:2;
+    }
+
+    .form-card{
+      width:100%;
+      border-radius:22px;
+    }
+
+    .btn-enviar{
+      align-self:stretch;
+      text-align:center;
+    }
+
+    .foot-inner{grid-template-columns:1fr;gap:30px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="nav" id="nav">
+    <button class="hamburger" id="hamburger" aria-label="menu"><span></span><span></span><span></span></button>
+    <div class="nav-logo"><img src="assets/logo.png" alt="Chocofari"></div>
+    <div class="nav-menu-left">
+      <a href="index.html#inicio">INICIO</a>
+      <a href="chocolateria.html">LA CHOCOLATERÍA</a>
+    </div>
+    <div class="nav-menu-right">
+      <a href="productos.html">PRODUCTOS</a>
+      <a href="contacto.html">CONTACTO</a>
+    </div>
+    <div class="nav-menu" id="nav-menu">
+      <a href="index.html#inicio">INICIO</a>
+      <a href="chocolateria.html">LA CHOCOLATERÍA</a>
+      <a href="productos.html">PRODUCTOS</a>
+      <a href="contacto.html">CONTACTO</a>
+    </div>
+  </nav>
+</header>
+
+<main class="contacto-main">
+  <h1 class="reveal">CONTACTO</h1>
+
+  <div class="contacto-body reveal">
+    <div class="form-card">
+      <input type="email" placeholder="Ingresá tu correo">
+      <textarea placeholder="Escribí tu consulta"></textarea>
+      <button class="btn-enviar">Enviar</button>
+    </div>
+    <div class="contacto-choco">
+      <img src="assets/contacto-chocolate.webp" alt="Tableta de chocolate">
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="foot-inner">
+    <div class="foot-form">
+      <div class="foot-logo"><img src="assets/logo.png" alt="Chocofari"></div>
+      <p>Tu opinión nos importa, envianos un mensaje!</p>
+      <div class="field">
+        <input type="text" placeholder="Empieza a escribir">
+        <button onclick="location.href='#'" aria-label="enviar">➤</button>
+      </div>
+    </div>
+    <div class="foot-col">
+      <h4>Explorar</h4>
+      <a href="#">Mapa de sitio</a>
+      <a href="#">Política de Privacidad</a>
+      <a href="#">Defensa al consumidor</a>
+    </div>
+    <div class="foot-col">
+      <h4>Seguinos en redes</h4>
+      <a href="#">Instagram</a>
+      <a href="#">Youtube</a>
+      <a href="#">TikTok</a>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>Chocofari SRL</span>
+    <span>2026 — Todos los derechos reservados</span>
+  </div>
+</footer>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const nav = document.getElementById('nav');
+
+  hamburger.addEventListener('click', () => {
+    nav.classList.toggle('open');
+    hamburger.classList.toggle('active');
+  });
+  document.querySelectorAll('.nav a').forEach(a => a.addEventListener('click', () => {
+    nav.classList.remove('open');
+    hamburger.classList.remove('active');
+  }));
+  document.addEventListener('click', (e) => {
+    if (!nav.contains(e.target)) {
+      nav.classList.remove('open');
+      hamburger.classList.remove('active');
+    }
+  });
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: .12 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
