@@ -231,11 +231,11 @@
     <div class="contacto-choco">
       <img src="assets/contacto-chocolate.webp" alt="Tableta de chocolate">
     </div>
-    <div class="form-card">
-      <input type="email" placeholder="Ingresá tu correo">
-      <textarea placeholder="Escribí tu consulta"></textarea>
-      <button class="btn-enviar">Enviar</button>
-    </div>
+    <form class="form-card" action="https://formspree.io/f/mpqeydwd" method="POST">
+      <input type="email" name="email" placeholder="Ingresá tu correo" required>
+      <textarea name="mensaje" placeholder="Escribí tu consulta" required></textarea>
+      <button type="submit" class="btn-enviar">Enviar</button>
+    </form>
   </div>
 </main>
 
@@ -244,10 +244,10 @@
     <div class="foot-form">
       <div class="foot-logo"><img src="assets/logo.png" alt="Chocofari"></div>
       <p>Tu opinión nos importa, envianos un mensaje!</p>
-      <div class="field">
-        <input type="text" placeholder="Empieza a escribir">
-        <button onclick="location.href='#'" aria-label="enviar">➤</button>
-      </div>
+      <form class="field" action="https://formspree.io/f/mpqeydwd" method="POST">
+        <input type="text" name="mensaje" placeholder="Empieza a escribir" required>
+        <button type="submit" aria-label="enviar">➤</button>
+      </form>
     </div>
     <div class="foot-col">
       <h4>Explorar</h4>
